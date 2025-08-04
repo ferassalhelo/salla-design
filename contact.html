@@ -43,7 +43,7 @@
     <!-- ***** Preloader End ***** -->
 
     <!-- Pre-header Starts -->
-    <div class="pre-header">
+    <section class="pre-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-sm-8 col-7">
@@ -57,15 +57,15 @@
                 </div>
                 <div class="col-lg-4 col-sm-4 col-5">
                     <ul class="social-media">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <!-- <li><a href="#"><i class="fa fa-snapchat"></i></a></li> -->
+                        <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
+                        <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <!-- Pre-header End -->
 
     <!-- ***** Header Area Start ***** -->
@@ -161,12 +161,11 @@
                                                     autocomplete="on" required>
                                             </fieldset>
                                             <fieldset>
-                                                <input type="tel" name="email" id="email" placeholder="رقم الواتس"
-                                                    required="">
+                                                <input type="tel" name="tel" id="tel" placeholder="رقم الواتس" required>
                                             </fieldset>
                                             <fieldset>
                                                 <input type="subject" name="subject" id="subject"
-                                                    placeholder="المطلوب ( إنشاء متجر, تصميم , بنرات , الخ..)">
+                                                    placeholder="المطلوب ( إنشاء متجر, تصميم , بنرات , الخ..)" required>
                                             </fieldset>
                                         </div>
                                         <div class="col-lg-6">
@@ -186,6 +185,7 @@
                             </div>
                         </div>
                     </form>
+                    <p id="status"></p>
                 </div>
             </div>
         </div>
@@ -209,7 +209,18 @@
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/imagesloaded.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+        const form = document.getElementById('contactForm');
+        const status = document.getElementById('status');
 
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => status.textContent = "تم إرسال الرسالة بنجاح")
+                .catch(error => status.textContent = "حدث خطأ، حاول مرة أخرى");
+        });
+    </script>
 </body>
 
 </html>
